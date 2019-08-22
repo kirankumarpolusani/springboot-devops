@@ -1,4 +1,9 @@
-pipeline {
+node {
+    stage("Checkout") {
+         steps {
+              git 'https://github.com/kirankumarpolusani/springboot-devops.git'
+         }
+    }
     stage("Package") {
          steps {
               sh "mvn clean package -DskipTests"
