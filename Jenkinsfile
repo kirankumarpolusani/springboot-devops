@@ -1,22 +1,24 @@
-node {
-
-   stage('Clone Repository') {
-       withMaven(maven: 'Maven 3') {
-             dir('app') {
-                git 'https://github.com/kirankumarpolusani/springboot-devops.git'
-               sh 'mvn clean package -DskipTests'
-               dockerCmd 'build --tag kirankumarpolusani/repo:v2.0.0 .'
+pipeline {
+     agent any
+     stages {
+        stage("Package") {
+             steps {
+                  sh "mvn clean package -DskipTests"
              }
-       }
-   }
-
-   stage('Push to Repository') {
-        dir('app') {
-          sh 'mvn clean package -DskipTests'
-          dockerCmd 'build --tag kirankumarpolusani/repo:v2.0.0 .'
-          dockerCmd 'login --username=kirankumarpolusani --password=1D@ntKn@w'
-          dockerCmd 'push kirankumarpolusani/repo:v2.0.0 .'
+        }stage("Docker build") {
+             steps {
+                  sh "docker build -t kirankumarpolusani/repo:v2.0.0 ."
+             }
+        }stage("Docker push") {
+             steps {
+                sh "docker login -u kirankumarpolusani -p 1D@ntKn@w"
+                sh "docker push kirankumarpolusani/repo:v2.0.0"
+             }
         }
-   }
-
+        stage("Deploy to staging") {
+             steps {
+                  sh "docker run -d --rm -p 9999:9999 --name springboot kirankumarpolusani/repo:v2.0.0"
+             }
+        }
+     }
 }
