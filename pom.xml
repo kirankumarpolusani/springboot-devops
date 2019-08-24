@@ -39,46 +39,8 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>19.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.tomitribe</groupId>
-            <artifactId>tomitribe-http-signatures</artifactId>
-            <version>1.0</version>
-        </dependency>
     </dependencies>
 
-    <!-- Repositories -->
-    <!--http://artifactory.oraclecorp.com/artifactory/repo1-cache-->
-    <repositories>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>central</id>
-            <name>libs-release</name>
-            <url>http://artifactory.oraclecorp.com/artifactory/repo1-cache</url>
-        </repository>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>libs-release</id>
-            <name>libs-release</name>
-            <url>http://artifactory.oraclecorp.com/artifactory/libs-release</url>
-        </repository>
-    </repositories>
 
     <build>
         <plugins>
