@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public OpenIdConnectFilter myFilter() {
-        final OpenIdConnectFilter filter = new OpenIdConnectFilter("/google-login");
+        final OpenIdConnectFilter filter = new OpenIdConnectFilter("/login");
         filter.setRestTemplate(restTemplate);
         return filter;
     }
@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .addFilterAfter(new OAuth2ClientContextFilter(), AbstractPreAuthenticatedProcessingFilter.class)
                 .addFilterAfter(myFilter(), OAuth2ClientContextFilter.class)
-                .httpBasic().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/google-login"))
+                .httpBasic().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
                 .and()
                 .authorizeRequests()
                 // .antMatchers("/","/index*").permitAll()
