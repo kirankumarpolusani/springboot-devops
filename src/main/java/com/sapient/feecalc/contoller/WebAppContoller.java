@@ -1,17 +1,10 @@
 package com.sapient.feecalc.contoller;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 import java.util.logging.Logger;
@@ -29,7 +22,8 @@ public class WebAppContoller {
 
     @RequestMapping("/login")
     public String index(Model model){
-        final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        //final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        String username = "Kiran";
         System.out.println("******" + username);
         model.addAttribute("datetime", new Date());
         model.addAttribute("username", username);
@@ -42,3 +36,4 @@ public class WebAppContoller {
 
 
 }
+
